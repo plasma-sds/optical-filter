@@ -23,7 +23,7 @@ class Spectrum(object):
         self.name = name
         self.label = label
         self.unit = unit
-        self.
+        self._set_interpolator()
         
     def _set_interpolator(self):
         self.interpolate = interp1d(self.wavelength, self.profile, 
