@@ -14,13 +14,25 @@ class Spectrum(object):
                  name='', label='Intensity', 
                  unit='Ph/s/nm'):
         
-        if len(wavelength) == len(profile):
-            self.wavelength = np.array(wavelength)
-            self.profile = np.array(profile)
-            self.name = name
-            self.label = label
-            self.unit = unit
+        if len(wavelength) != len(profile):
+            raise ValueError('The <wavelength> and <profile> input is required to of the same size.')
+        
+        self.wavelength = np.array(wavelength)
+        self.profile = np.array(profile)
+        self.name = name
+        self.label = label
+        self.unit = unit
             
-    def show():
-        plt.plot(self.wavelength, self.profile)
+    def show(self, xrange=None, yrange=None):
+        plt.plot(self.wavelength, self.profile, 'r-', linewidth=3)
+        plt.title('Spectrum for: '+ self.name, )
+        plt.xlabel('Wavelength [nm]', )
+        if xrange is None:
+            plt.xlim([self.wavelength.min(), self.wavelength.max()])
+        else:
+            plt.xlim(xrange)
+        if yrange is None:
+            plt.ylim([self.profile(), self.profile.max()])
+        else:
+            plt.ylim(xrange)
         plt.show()
