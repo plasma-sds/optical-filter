@@ -29,9 +29,14 @@ class Spectrum(object):
         self.interpolate = interp1d(self.wavelength, self.profile, 
                                     kind='quadratic', fill_value='extrapolate')        
             
-    def show(self, xrange=None, yrange=None):
-        plt.plot(self.wavelength, self.profile, 'r-', linewidth=3, 
+    def show(self, xrange=None, yrange=None, points=None):
+        plt.plot(self.wavelength, self.profile, 'r-', linewidth=2, 
                  label=self.name)
+        if not points is None:
+            plt.scatter(np.array(points), self.interpolate(np.array(points)), 
+                        s=30, label='Interpolated points', 
+                        marker='x', linewidths=2, c='b')
+        
         plt.title('Spectrum for: '+ self.name, 
                   fontweight = 'bold', fontsize=12)
         plt.xlabel('Wavelength [nm]', fontweight = 'bold', fontsize=12)
