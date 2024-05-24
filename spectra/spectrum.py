@@ -46,3 +46,19 @@ class Spectrum(object):
             plt.ylim(xrange)
         plt.legend(fontsize=12, prop={'weight':'bold'}, edgecolor="inherit")
         plt.show()
+        
+class MultiSpectrum(object):
+    def __init__(self, name=''):
+        self.name=name
+        
+    def add_spectrum(self):
+        pass
+    
+    def update_spectrum(self):
+        pass
+    
+    def list_spectrum(self):
+        pass
+    
+    def show_spectrum(self):
+        pass
