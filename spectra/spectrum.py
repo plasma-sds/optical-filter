@@ -12,7 +12,7 @@ from scipy.interpolate import interp1d
 
 class Spectrum(object):
     def __init__(self, wavelength, profile, name='', label='Intensity', 
-                 unit='Ph/s/nm'):
+                 unit='Ph/s/'+r'$\Omega$'+'/nm'):
         
         if len(wavelength) != len(profile):
             raise ValueError('The <wavelength> and <profile> input is' 
@@ -30,10 +30,11 @@ class Spectrum(object):
                                     kind='quadratic', fill_value='extrapolate')        
             
     def show(self, xrange=None, yrange=None):
-        plt.plot(self.wavelength, self.profile, 'r-', linewidth=3)
+        plt.plot(self.wavelength, self.profile, 'r-', linewidth=3, 
+                 label=self.name)
         plt.title('Spectrum for: '+ self.name, 
                   fontweight = 'bold', fontsize=12)
-        plt.xlabel('Wavelength [nm]', )
+        plt.xlabel('Wavelength [nm]', fontweight = 'bold', fontsize=12)
         plt.ylabel(self.label + ' [' + self.unit + ']',
                    fontweight = 'bold', fontsize=12)
         if xrange is None:
@@ -41,9 +42,9 @@ class Spectrum(object):
         else:
             plt.xlim(xrange)
         if yrange is None:
-            plt.ylim([self.profile().min(), self.profile.max()])
+            plt.ylim([self.profile.min(), self.profile.max()])
         else:
-            plt.ylim(xrange)
+            plt.ylim(yrange)
         plt.legend(fontsize=12, prop={'weight':'bold'}, edgecolor="inherit")
         plt.show()
         
