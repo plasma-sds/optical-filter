@@ -8,3 +8,4 @@ Created on Fri May 24 15:27:35 2024
 import unittest
 import numpy
 import scipy
+from spectra.spectrum import Spectrum
