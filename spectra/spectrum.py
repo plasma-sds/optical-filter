@@ -41,7 +41,7 @@ class Spectrum(object):
         else:
             plt.xlim(xrange)
         if yrange is None:
-            plt.ylim([self.profile(), self.profile.max()])
+            plt.ylim([self.profile().min(), self.profile.max()])
         else:
             plt.ylim(xrange)
         plt.legend(fontsize=12, prop={'weight':'bold'}, edgecolor="inherit")
