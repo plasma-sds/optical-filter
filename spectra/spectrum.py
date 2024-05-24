@@ -56,9 +56,12 @@ class Spectrum(object):
 class MultiSpectrum(object):
     def __init__(self, name=''):
         self.name=name
+        self.spectra = {}
         
-    def add_spectrum(self):
-        pass
+    def add_spectrum(self, wavelength, profile, name, label='Intensity', 
+                 unit='Ph/s/'+r'$\Omega$'+'/nm'):
+        self.spectra.append({name : Spectrum(wavelength, profile, name=name,
+                                             label=label, unit=unit)})
     
     def update_spectrum(self):
         pass
