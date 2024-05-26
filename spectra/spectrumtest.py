@@ -42,7 +42,13 @@ class SpectrumTest(unittest.TestCase):
             assert hasattr(self.spectrum, attr)
     
     def test_wavelength(self):
-        pass
+        self.assertIsInstance(self.spectrum.wavelength, numpy.ndarray, 
+                              msg='Wavelength data is expected to be in '
+                              'numpy.ndarray format.')
+        for element in range(len(self.spectrum.wavelength)):
+            self.assertEqual(self.spectrum.wavelength[element], 
+                             self.EXPECTED_WAVELENGTH[element], 
+                             msg='Wavelength values dont match expected ones.')
     
     def test_profile(self):
         pass
