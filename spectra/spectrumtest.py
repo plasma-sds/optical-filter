@@ -51,7 +51,13 @@ class SpectrumTest(unittest.TestCase):
                              msg='Wavelength values dont match expected ones.')
     
     def test_profile(self):
-        pass
+        self.assertIsInstance(self.spectrum.profile, numpy.ndarray, 
+                              msg='Profile data is expected to be in '
+                              'numpy.ndarray format.')
+        for element in range(len(self.spectrum.profile)):
+            self.assertEqual(self.spectrum.profile[element], 
+                             self.EXPECTED_PROFILES[element], 
+                             msg='Profile values dont match expected ones.')
     
     def test_interpolator(self):
         pass
