@@ -29,6 +29,7 @@ class SpectrumTest(unittest.TestCase):
                                      1.17628952e+16, 7.77056599e+15, 
                                      6.54854474e+15, 6.49523047e+15])
     EXPECTED_INTERPOLATION_INDEX = numpy.array([0, 3, 7])
+    EXPECTED_DELTA = 1e12
     
     def setUp(self):
         self.spectrum = Spectrum(self.EXPECTED_WAVELENGTH, 
@@ -61,6 +62,6 @@ class SpectrumTest(unittest.TestCase):
     
     def test_interpolator(self):
         for element in range(len(self.EXPECTED_INTERPOLATION_INDEX)):
-            self.assertEqual(self.spectrum.interpolate(self.EXPECTED_WAVELENGTH[element]), 
+            self.assertEqual(self.spectrum.interpolate(self.EXPECTED_WAVELENGTH[element])[0], 
                              self.EXPECTED_PROFILES[element], 
                              msg='Interpolated values dont match expected ones.')
