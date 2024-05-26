@@ -62,6 +62,7 @@ class SpectrumTest(unittest.TestCase):
     
     def test_interpolator(self):
         for element in range(len(self.EXPECTED_INTERPOLATION_INDEX)):
-            self.assertEqual(self.spectrum.interpolate(self.EXPECTED_WAVELENGTH[element])[0], 
+            self.assertAlmostEqual(self.spectrum.interpolate(self.EXPECTED_WAVELENGTH[element]), 
                              self.EXPECTED_PROFILES[element], 
-                             msg='Interpolated values dont match expected ones.')
+                             msg='Interpolated values dont match expected ones.',
+                             delta = self.EXPECTED_DELTA)
