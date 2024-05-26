@@ -60,4 +60,7 @@ class SpectrumTest(unittest.TestCase):
                              msg='Profile values dont match expected ones.')
     
     def test_interpolator(self):
-        pass
+        for element in range(len(self.EXPECTED_INTERPOLATION_INDEX)):
+            self.assertEqual(self.spectrum.interpolate(self.EXPECTED_PROFILES[element]), 
+                             self.EXPECTED_PROFILES[element], 
+                             msg='Interpolated values dont match expected ones.')
