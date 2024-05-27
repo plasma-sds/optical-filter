@@ -73,6 +73,15 @@ class MultiSpectrum(object):
         print(self.spectra.keys())
         return list(self.spectra.keys())
     
+    def compare_spectra(self, actual, reference, kind='absolute'):
+        val = self.spectra[actual].profile - self.spectra[reference].interpolate(self.spectra[actual].wavelength)
+        if kind == 'absolute':
+            return val
+        elif kind == 'relative':
+            return val/self.spectra[reference].interpolate(self.spectra[actual].wavelength)
+        else:
+            print('The comparison: ' + kind + ' is not supported.')
+    
     def show_spectra(self, yaxis='normal', xrange=None, 
                      yrange=None, selection=None):
         if selection is None:
@@ -96,4 +105,3 @@ class MultiSpectrum(object):
             plt.ylim(yrange)
         plt.legend(fontsize=12, prop={'weight':'bold'}, edgecolor="inherit")
         plt.show()    
-        
