@@ -73,5 +73,20 @@ class MultiSpectrum(object):
         print(self.spectra.keys())
         return list(self.spectra.keys())
     
-    def show_spectrum(self):
-        pass
+    def show_all_spectra(self, yaxis='normal', xrange=None, yrange=None):
+        plots = self.list_spectrum()
+        for plot in plots:
+            plt.plot(self.spectra[plot].wavelength, self.spectra[plot].profile,
+                     linewidth=2, label=plot)
+        plt.title('Spectrum for: '+ self.name, 
+                  fontweight = 'bold', fontsize=12)
+        plt.xlabel('Wavelength [nm]', fontweight = 'bold', fontsize=12)
+        plt.ylabel(self.spectra[plot].label + ' [' + self.spectra[plot].unit + ']',
+                   fontweight = 'bold', fontsize=12)
+        if xrange is not None:
+            plt.xlim(xrange)
+        if yrange is not None:
+            plt.ylim(yrange)
+        plt.legend(fontsize=12, prop={'weight':'bold'}, edgecolor="inherit")
+        plt.show()    
+        
