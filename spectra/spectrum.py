@@ -60,8 +60,11 @@ class MultiSpectrum(object):
         
     def add_spectrum(self, wavelength, profile, name, label='Intensity', 
                  unit='Ph/s/'+r'$\Omega$'+'/nm'):
-        self.spectra[name] = Spectrum(wavelength, profile, name=name,
-                                             label=label, unit=unit)
+        if name not in self.list_spectrum():
+            self.spectra[name] = Spectrum(wavelength, profile, name=name,
+                                                 label=label, unit=unit)
+        else:
+            print('This key: '+ name + ' already holds data.')
     
     def update_spectrum(self, reference, wavelength, profile, name, 
                         label='Intensity', unit='Ph/s/'+r'$\Omega$'+'/nm'):
@@ -70,7 +73,7 @@ class MultiSpectrum(object):
                                                label='Intensity', 
                                                unit='Ph/s/'+r'$\Omega$'+'/nm')
         else:
-            raise KeyError('The expected key: '+ reference + ' is not present.')
+            print('The expected key: '+ reference + ' is not present.')
     
     def list_spectrum(self):
         return list(self.spectra.keys())
