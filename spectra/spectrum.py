@@ -70,7 +70,8 @@ class MultiSpectrum(object):
                                            unit='Ph/s/'+r'$\Omega$'+'/nm')
     
     def list_spectrum(self):
-        pass
+        print(self.spectra.keys())
+        return list(self.spectra.keys())
     
     def show_spectrum(self):
         pass
