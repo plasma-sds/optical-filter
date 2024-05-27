@@ -73,11 +73,18 @@ class MultiSpectrum(object):
         print(self.spectra.keys())
         return list(self.spectra.keys())
     
-    def show_all_spectra(self, yaxis='normal', xrange=None, yrange=None):
-        plots = self.list_spectrum()
+    def show_spectra(self, yaxis='normal', xrange=None, 
+                     yrange=None, selection=None):
+        if selection is None:
+            plots = self.list_spectrum()
+        else:
+            plots=list(selection)
         for plot in plots:
-            plt.plot(self.spectra[plot].wavelength, self.spectra[plot].profile,
-                     linewidth=2, label=plot)
+            try:
+                plt.plot(self.spectra[plot].wavelength, self.spectra[plot].profile,
+                         linewidth=2, label=plot)
+            except KeyError:
+                print('The requested plot: ' + plot + 'is not avaiable.')
         plt.title('Spectrum for: '+ self.name, 
                   fontweight = 'bold', fontsize=12)
         plt.xlabel('Wavelength [nm]', fontweight = 'bold', fontsize=12)
