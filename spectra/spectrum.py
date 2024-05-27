@@ -60,17 +60,19 @@ class MultiSpectrum(object):
         
     def add_spectrum(self, wavelength, profile, name, label='Intensity', 
                  unit='Ph/s/'+r'$\Omega$'+'/nm'):
-        self.spectra.append({name : Spectrum(wavelength, profile, name=name,
-                                             label=label, unit=unit)})
+        self.spectra[name] = Spectrum(wavelength, profile, name=name,
+                                             label=label, unit=unit)
     
     def update_spectrum(self, reference, wavelength, profile, name, 
                         label='Intensity', unit='Ph/s/'+r'$\Omega$'+'/nm'):
-        self.spectra[reference] = Spectrum(wavelength, profile, name, 
-                                           label='Intensity', 
-                                           unit='Ph/s/'+r'$\Omega$'+'/nm')
+        if reference in self.list_spectrum():
+            self.spectra[reference] = Spectrum(wavelength, profile, name, 
+                                               label='Intensity', 
+                                               unit='Ph/s/'+r'$\Omega$'+'/nm')
+        else:
+            raise KeyError('The expected key: '+ reference + ' is not present.')
     
     def list_spectrum(self):
-        print(self.spectra.keys())
         return list(self.spectra.keys())
     
     def compare_spectra(self, actual, reference, kind='absolute'):
@@ -91,7 +93,7 @@ class MultiSpectrum(object):
         for plot in plots:
             try:
                 plt.plot(self.spectra[plot].wavelength, self.spectra[plot].profile,
-                         linewidth=2, label=plot)
+                         linewidth=2, label=self.spectra[plot].name)
             except KeyError:
                 print('The requested plot: ' + plot + 'is not avaiable.')
         plt.title('Spectrum for: '+ self.name, 
