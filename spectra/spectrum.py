@@ -108,5 +108,7 @@ class MultiSpectrum(object):
             plt.xlim(xrange)
         if yrange is not None:
             plt.ylim(yrange)
+        if yaxis == 'log':
+            plt.yscale(yaxis)
         plt.legend(fontsize=12, prop={'weight':'bold'}, edgecolor="inherit")
         plt.show()    
