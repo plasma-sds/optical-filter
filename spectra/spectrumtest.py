@@ -8,6 +8,7 @@ Created on Fri May 24 15:27:35 2024
 import unittest
 import numpy
 from spectra.spectrum import Spectrum
+from spectra.spectrum import MultiSpectrum
 
 class SpectrumTest(unittest.TestCase):
     
@@ -65,3 +66,13 @@ class SpectrumTest(unittest.TestCase):
                              self.EXPECTED_PROFILES[element], 
                              msg='Interpolated values dont match expected ones.',
                              delta = self.EXPECTED_DELTA)
+            
+class MultiSpectrumTest(unittest.TestCase):
+    
+    INPUT_NAME = 'bes_spectrum'
+    
+    def setUp(self):
+        self.spectrum = MultiSpectrum(name=self.INPUT_NAME)
+        
+    def tearDown(self):
+        del self.spectrum
