@@ -70,6 +70,7 @@ class SpectrumTest(unittest.TestCase):
 class MultiSpectrumTest(unittest.TestCase):
     
     INPUT_NAME = 'bes_spectrum'
+    EXPECTED_ATTR = ['name', 'spectra']
     
     def setUp(self):
         self.spectrum = MultiSpectrum(name=self.INPUT_NAME)
@@ -78,7 +79,8 @@ class MultiSpectrumTest(unittest.TestCase):
         del self.spectrum
         
     def test_necessary_attributes(self):
-        pass
+        for attr in self.EXPECTED_ATTR:
+            assert hasattr(self.spectrum, attr)
     
     def test_spectrum_addition(self):
         pass
