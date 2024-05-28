@@ -76,3 +76,19 @@ class MultiSpectrumTest(unittest.TestCase):
         
     def tearDown(self):
         del self.spectrum
+        
+    def test_necessary_attributes(self):
+        pass
+    
+    def test_spectrum_addition(self):
+        pass
+    
+    def test_spectrum_update(self):
+        pass
+    
+    def test_spectrum_listing(self):
+        pass
+    
+    def test_spectrum_comparison(self):
+        pass
+        
