@@ -21,3 +21,4 @@ jobs:
     - name: Run tests
       run: |
         python -m unittest -v spectra.spectrumtest.SpectrumTest
+        python -m unittest -v spectra.spectrumtest.MultiSpectrumTest
