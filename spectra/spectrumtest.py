@@ -106,7 +106,11 @@ class MultiSpectrumTest(unittest.TestCase):
         pass
     
     def test_spectrum_listing(self):
-        pass
+        for item in self.INPUT_NAMES:
+            self.spectrum.add_spectrum(self.INPUT_WAVELENGTH, 
+                                       self.INPUT_PROFILES, item)
+        self.assertListEqual(self.INPUT_NAMES, self.spectrum.list_spectrum(),
+                             msg='The spectral list does not match expected values.')
     
     def test_spectrum_comparison(self):
         pass
