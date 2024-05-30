@@ -117,7 +117,7 @@ class MultiSpectrumTest(unittest.TestCase):
                              list(self.INPUT_WAVELENGTH), 
                              msg='The actual wavelength array does not match the expected wavelength in the added spectral object.')
         self.assertListEqual(list(self.spectrum.spectra[self.INPUT_NAMES[0]].profile),
-                             list(numpy.zeros(self.INPUT_PROFILES)), 
+                             list(numpy.zeros(len(self.INPUT_PROFILES))), 
                              msg='The actual profile array does not match the expected profile in the added spectral object.')
     
     def test_spectrum_listing(self):
