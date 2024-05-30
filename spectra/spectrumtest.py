@@ -101,10 +101,10 @@ class MultiSpectrumTest(unittest.TestCase):
     def test_spectrum_addition(self):
         self.spectrum.add_spectrum(self.INPUT_WAVELENGTH, self.INPUT_PROFILES, 
                                    self.INPUT_NAMES[0])
-        self.assertListEqual(list(self.spectrum[self.INPUT_NAMES[0]].wavelength),
+        self.assertListEqual(list(self.spectrum.spectra[self.INPUT_NAMES[0]].wavelength),
                              list(self.INPUT_WAVELENGTH), 
                              msg='The actual wavelength array does not match the expected wavelength in the added spectral object.')
-        self.assertListEqual(list(self.spectrum[self.INPUT_NAMES[0]].profile),
+        self.assertListEqual(list(self.spectrum.spectra[self.INPUT_NAMES[0]].profile),
                              list(self.INPUT_PROFILES), 
                              msg='The actual profile array does not match the expected profile in the added spectral object.')
     
