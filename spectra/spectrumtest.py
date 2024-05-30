@@ -133,4 +133,4 @@ class MultiSpectrumTest(unittest.TestCase):
         self.spectrum.add_spectrum(self.INPUT_WAVELENGTH, self.INPUT_PROFILES, 
                                    self.INPUT_NAMES[1])
         self.assertListEqual(list(self.spectrum.compare_spectra(self.INPUT_NAMES[0], self.INPUT_NAMES[1])), 
-                                  list(len(self.INPUT_PROFILES)), msg='Spectral comparison failed.')
+                                  list(numpy.zeros(len(self.INPUT_PROFILES))), msg='Spectral comparison failed.')
