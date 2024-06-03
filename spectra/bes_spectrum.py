@@ -13,7 +13,16 @@ class BeamEmissionSpectrum(object):
         self.background = MultiSpectrum(name='Background Spectra')
         self.cx = MultiSpectrum(name='Charge Exchange Spectra')
         self.bes = MultiSpectrum(name='Active Emission Spectra')
+        self.total = MultiSpectrum(name='Total Spectra')
         self.filter = None
         
     def add_filter(self, optical_filter):
         self.filter = optical_filter
+        
+    def list_spectrum(self):
+        return (list(self.background.keys()) + list(self.cx.keys()) + 
+                list(self.bes.keys()) + list(self.total.keys()))
+        
+    def show_spectra(self, yaxis='normal', xrange=None, yrange=None, background=True,
+                     cx=False, bes=True, total=False):
+        pass
