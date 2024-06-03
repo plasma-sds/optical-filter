@@ -25,6 +25,9 @@ class Spectrum(object):
         self.unit = unit
         self._set_interpolator()
         
+    def __repr__(self):
+        return f'Spectrum for "{self.name}"'
+        
     def _set_interpolator(self):
         self.interpolate = interp1d(self.wavelength, self.profile, 
                                     kind='quadratic', fill_value='extrapolate')        
@@ -57,6 +60,9 @@ class MultiSpectrum(object):
     def __init__(self, name=''):
         self.name=name
         self.spectra = {}
+        
+    def __repr__(self):
+        return f'MultiSpectrum for "{self.name}"'
         
     def add_spectrum(self, wavelength, profile, name, label='Intensity', 
                  unit='Ph/s/'+r'$\Omega$'+'/nm'):
