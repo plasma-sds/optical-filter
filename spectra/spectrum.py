@@ -44,7 +44,9 @@ class Spectrum(object):
                         name='('+self.name+'*'+other.name+')')
     
     def __div__(self, other):
-        pass
+        divided_profile = self.profile / other.interpolate(self.wavelength)
+        return Spectrum(self.wavelength, divided_profile, 
+                        name='('+self.name+'/'+other.name+')')
         
     def _set_interpolator(self):
         self.interpolate = interp1d(self.wavelength, self.profile, 
