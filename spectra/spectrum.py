@@ -34,7 +34,9 @@ class Spectrum(object):
                         name='('+self.name+'+'+other.name+')')
     
     def __sub__(self, other):
-        pass
+        subtract_profile = self.profile - other.interpolate(self.wavelength)
+        return Spectrum(self.wavelength, subtract_profile, 
+                        name='('+self.name+'-'+other.name+')')
     
     def __mul__(self, other):
         pass
