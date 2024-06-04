@@ -43,10 +43,11 @@ class Spectrum(object):
         return Spectrum(self.wavelength, multiplied_profile, 
                         name='('+self.name+'*'+other.name+')')
     
-    def __div__(self, other):
+    def __truediv__(self, other):
         divided_profile = self.profile / other.interpolate(self.wavelength)
         return Spectrum(self.wavelength, divided_profile, 
-                        name='('+self.name+'/'+other.name+')')
+                        name='('+self.name+'/'+other.name+')', 
+                        label='A.U.', unit='-')
         
     def _set_interpolator(self):
         self.interpolate = interp1d(self.wavelength, self.profile, 
@@ -82,7 +83,7 @@ class MultiSpectrum(object):
         self.spectra = {}
         
     def __repr__(self):
-        return f'MultiSpectrum for "{self.name}"'
+        return f'MultiSpectrum Object for "{self.name}"'
         
     def add_spectrum(self, wavelength, profile, name, label='Intensity', 
                  unit='Ph/s/'+r'$\Omega$'+'/nm'):
