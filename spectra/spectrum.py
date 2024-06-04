@@ -26,7 +26,21 @@ class Spectrum(object):
         self._set_interpolator()
         
     def __repr__(self):
-        return f'Spectrum for "{self.name}"'
+        return f'Spectrum Object for "{self.name}"'
+    
+    def __add__(self, other):
+        added_profile = self.profile + other.interpolate(self.wavelength)
+        return Spectrum(self.wavelength, added_profile, 
+                        name='('+self.name+'+'+other.name+')')
+    
+    def __sub__(self, other):
+        pass
+    
+    def __mul__(self, other):
+        pass
+    
+    def __div__(self, other):
+        pass
         
     def _set_interpolator(self):
         self.interpolate = interp1d(self.wavelength, self.profile, 
