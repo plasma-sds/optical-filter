@@ -39,7 +39,9 @@ class Spectrum(object):
                         name='('+self.name+'-'+other.name+')')
     
     def __mul__(self, other):
-        pass
+        multiplied_profile = self.profile * other.interpolate(self.wavelength)
+        return Spectrum(self.wavelength, multiplied_profile, 
+                        name='('+self.name+'*'+other.name+')')
     
     def __div__(self, other):
         pass
