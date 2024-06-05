@@ -8,11 +8,12 @@ Created on Thu May 16 18:22:30 2024
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.interpolate import interp1d
+from spectra.functions import property_function_manager
 
 
 class Spectrum(object):
     def __init__(self, wavelength, profile, name='', label='Intensity', 
-                 unit='Ph/s/'+r'$\Omega$'+'/nm'):
+                 unit='Ph/s/'+r'$\Omega$'+'/nm', properties=None):
         
         if len(wavelength) != len(profile):
             raise ValueError('The <wavelength> and <profile> input is' 
@@ -23,7 +24,11 @@ class Spectrum(object):
         self.name = name
         self.label = label
         self.unit = unit
+        self.properties = {}
         self._set_interpolator()
+        if properties != None:
+            for spectral_property in properties:
+                self.properties[spectral_property] = property_function_manager(spectral_property)
         
     def __repr__(self):
         return f'Spectrum Object for "{self.name}"'
