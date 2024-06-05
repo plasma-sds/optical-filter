@@ -16,3 +16,6 @@ def apply_filter(spectrum, filter):
 
 def calculate_filter_efficiency(spectrum):
     pass
+
+def property_function_manager(spectral_property):
+    pass
